@@ -1,18 +1,36 @@
 <?php
 class Controller
 {
+    public $load;
+    public $session;
+
     public function __construct()
     {
-        $this->load->view = new class {
+        $this->session = new Session();
+        $this->load = new class {
             public function view($viewName, $data = [])
             {
                 if (!empty($data)) extract($data);
-                require './view/'. $viewName. '.php';
+                require __DIR__ . '/../view/'. $viewName. '.php';
             }
             public function model($modelName)
             {
-                require_once './model/'. $modelName. '.php';
+                require_once __DIR__ . '/../model/'. $modelName. '.php';
                 return new $modelName();
+            }
+            public function post($key = null)
+            {
+               if ($key === null) {
+               return $_POST;
+               }
+               return $_POST[$key] ?? null;
+            }
+            public function get($key = null)
+           {
+                if ($key === null) {
+                return $_GET;
+                }
+                return $_GET[$key] ?? null;
             }
         };
     }
