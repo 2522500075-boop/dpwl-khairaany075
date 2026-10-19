@@ -16,6 +16,7 @@ class Controller
             public function model($modelName)
             {
                 require_once __DIR__ . '/../model/'. $modelName. '.php';
+                $modelName = basename($modelName);
                 return new $modelName();
             }
             public function post($key = null)

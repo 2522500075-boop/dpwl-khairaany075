@@ -1,2 +1,3 @@
 <?php
-$config['base_url'] = 'http://localhost/dpwl-Khairaany075/';
+define('BASEURL', 'http://localhost/dpwl-Khairaany075');
+?>
