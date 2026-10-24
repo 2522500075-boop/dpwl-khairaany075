@@ -32,9 +32,41 @@ class Mobil_C extends Controller
             exit;
         }
 
+
+
         $ft_depan = 'Depan' . $this->load->post('no_plat');
         $ft_blkg = 'Belakang' . $this->load->post('no_plat');
         $ft_interior = 'Interior' . $this->load->post('no_plat');
+        
+       $nm_gambar = $_FILES['ft_depan']['tmp_name'];
+        $ekstensi = explode(".", $_FILES['ft_depan']['name']);
+        $ekstensi = end($ekstensi);
+        $ft_depan = $ft_depan . "." . $ekstensi;
+        $target_dir = dirname(__DIR__, 2) . '/img/' . $ft_depan;
+        if ($ekstensi == "jpg" || $ekstensi == "png" || $ekstensi == "jpeg") {
+            move_uploaded_file($nm_gambar, $target_dir);
+        }
+
+        // 2. FOTO BELAKANG
+        $nm_gambar2 = $_FILES['ft_blkg']['tmp_name'];
+        $ekstensi2 = explode(".", $_FILES['ft_blkg']['name']);
+        $ekstensi2 = end($ekstensi2);
+        $ft_blkg = $ft_blkg . "." . $ekstensi2;
+        $target_dir2 = dirname(__DIR__, 2) . '/img/' . $ft_blkg;
+        if ($ekstensi2 == "jpg" || $ekstensi2 == "png" || $ekstensi2 == "jpeg") {
+            move_uploaded_file($nm_gambar2, $target_dir2);
+        }
+
+        // 3. FOTO INTERIOR
+        $nm_gambar3 = $_FILES['ft_interior']['tmp_name'];
+        $ekstensi3 = explode(".", $_FILES['ft_interior']['name']);
+        $ekstensi3 = end($ekstensi3);
+        $ft_interior = $ft_interior . "." . $ekstensi3;
+        $target_dir3 = dirname(__DIR__, 2) . '/img/' . $ft_interior;
+        if ($ekstensi3 == "jpg" || $ekstensi3 == "png" || $ekstensi3 == "jpeg") {
+            move_uploaded_file($nm_gambar3, $target_dir3);
+        }
+
         $data = [
             'no_plat' => $this->load->post('no_plat'),
             'nm_mobil' => $this->load->post('nm_mobil'),

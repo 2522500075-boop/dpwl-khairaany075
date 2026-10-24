@@ -93,13 +93,29 @@
             <div class="row">
               <div class="col-12"><label><i class="fas fa-camera"></i> Foto Mobil</label></div>
               <div class="col-md-4">
-                <div class="form-group"><label>Foto Depan</label><input type="file" name="ft_depan" class="form-control"><small>Format JPG, JPEG atau PNG</small></div>
+                <div class="form-group">
+                  <label>Foto Depan</label>
+                  <input type="file" name="ft_depan" id="ft_depan" class="form-control" accept="image/*">
+                  <small>Format JPG, JPEG atau PNG</small>
+                  <!-- TAMBAHAN PREVIEW - BIAR MUNCUL FOTO -->
+                  <img id="preview_depan" src="" width="100%" style="margin-top:10px; display:none; border-radius:8px; border:1px solid #ddd;">
+                </div>
               </div>
               <div class="col-md-4">
-                <div class="form-group"><label>Foto Belakang</label><input type="file" name="ft_blkg" class="form-control"><small>Format JPG, JPEG atau PNG</small></div>
+                <div class="form-group">
+                  <label>Foto Belakang</label>
+                  <input type="file" name="ft_blkg" id="ft_blkg" class="form-control" accept="image/*">
+                  <small>Format JPG, JPEG atau PNG</small>
+                  <img id="preview_blkg" src="" width="100%" style="margin-top:10px; display:none; border-radius:8px; border:1px solid #ddd;">
+                </div>
               </div>
               <div class="col-md-4">
-                <div class="form-group"><label>Foto Interior</label><input type="file" name="ft_interior" class="form-control"><small>Format JPG, JPEG atau PNG</small></div>
+                <div class="form-group">
+                  <label>Foto Interior</label>
+                  <input type="file" name="ft_interior" id="ft_interior" class="form-control" accept="image/*">
+                  <small>Format JPG, JPEG atau PNG</small>
+                  <img id="preview_interior" src="" width="100%" style="margin-top:10px; display:none; border-radius:8px; border:1px solid #ddd;">
+                </div>
               </div>
             </div>
 
@@ -118,3 +134,20 @@
     </div>
   </section>
 </div>
+
+<!-- SCRIPT TAMBAHAN BIAR FOTO MUNCUL PAS PILIH FILE -->
+<script>
+  function previewImage(input, previewId) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById(previewId).src = e.target.result;
+        document.getElementById(previewId).style.display = 'block';
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  document.getElementById('ft_depan').addEventListener('change', function(){ previewImage(this, 'preview_depan'); });
+  document.getElementById('ft_blkg').addEventListener('change', function(){ previewImage(this, 'preview_blkg'); });
+  document.getElementById('ft_interior').addEventListener('change', function(){ previewImage(this, 'preview_interior'); });
+</script>

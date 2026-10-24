@@ -56,9 +56,34 @@
                     <td><?= $m['hrg_hari'] ?></td>
                     <td><?= $m['cttn_unit'] ?></td>
                     <td><?= $m['status_unit'] ?></td>
-                    <td>
-                      <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                      <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+
+                    
+<td>
+    <img src="<?= base_url('img/' . $m['ft_depan']) ?>"
+         alt="Foto Depan"
+         width="100"
+         style="margin-bottom: 5px;">
+
+    <br>
+
+    <img src="<?= base_url('img/' . $m['ft_blkg']) ?>"
+         alt="Foto Belakang"
+         width="100"
+         style="margin-bottom: 5px;">
+
+    <br>
+
+    <img src="<?= base_url('img/' . $m['ft_interior']) ?>"
+         alt="Foto Interior"
+         width="100">
+</td>
+
+                      
+<td>
+    <a href="#" class="btn btn-warning btn-sm">Edit</a>
+    <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+</td>
+
                     </td>
                   </tr>
                   <?php endforeach; ?>
