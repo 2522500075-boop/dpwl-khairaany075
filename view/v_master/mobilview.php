@@ -22,11 +22,13 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <!-- TOMBOL UDAH AKU BENERIN PAKE ?url= BIAR BISA DI PENCET -->
-              <a href="<?= base_url('?url=c_master/Mobil_C/create_mobil') ?>" class="btn btn-primary mb-3">
-              <i class="fas fa-car"></i> Tambah Data Mobil
+
+              <!-- Tombol Tambah Data Mobil -->
+              <a href="<?= base_url('?url=c_master/Mobil_C/create_mobil') ?>"
+                 class="btn btn-primary mb-3">
+                <i class="fas fa-car"></i> Tambah Data Mobil
               </a>
-              
+
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -43,6 +45,7 @@
                     <th>Aksi</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <?php foreach ($dtmobil as $m) : ?>
                   <tr>
@@ -50,45 +53,45 @@
                     <td><?= $m['nm_mobil'] ?></td>
                     <td><?= $m['nkursi'] ?></td>
                     <td><?= $m['nbagasi'] ?></td>
-                    <td><?= $m['jns_mobil'] . '</br>' . $m['transmisi'] ?></td>
+                    <td><?= $m['jns_mobil'] . '<br>' . $m['transmisi'] ?></td>
                     <td><?= $m['thn_buat'] ?></td>
-                    <td><?= $m['ft_depan'] . '<br>' . $m['ft_blkg'] . '<br>' . $m['ft_interior'] ?></td>
+
+                    <!-- Kolom Foto Mobil -->
+                    <td>
+                      <img src="<?= base_url('img/' . $m['ft_depan']) ?>"
+                           alt="Foto Depan"
+                           width="100"
+                           style="margin-bottom: 5px;">
+                      <br>
+
+                      <img src="<?= base_url('img/' . $m['ft_blkg']) ?>"
+                           alt="Foto Belakang"
+                           width="100"
+                           style="margin-bottom: 5px;">
+                      <br>
+
+                      <img src="<?= base_url('img/' . $m['ft_interior']) ?>"
+                           alt="Foto Interior"
+                           width="100">
+                    </td>
+
                     <td><?= $m['hrg_hari'] ?></td>
                     <td><?= $m['cttn_unit'] ?></td>
                     <td><?= $m['status_unit'] ?></td>
 
-                    
-<td>
-    <img src="<?= base_url('img/' . $m['ft_depan']) ?>"
-         alt="Foto Depan"
-         width="100"
-         style="margin-bottom: 5px;">
+                    <!-- Kolom Aksi -->
+                    <td>
+                      <a href="#"
+                         class="btn btn-warning btn-sm">Edit</a>
 
-    <br>
-
-    <img src="<?= base_url('img/' . $m['ft_blkg']) ?>"
-         alt="Foto Belakang"
-         width="100"
-         style="margin-bottom: 5px;">
-
-    <br>
-
-    <img src="<?= base_url('img/' . $m['ft_interior']) ?>"
-         alt="Foto Interior"
-         width="100">
-</td>
-
-                      
-<td>
-    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-    <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-</td>
-
+                      <a href="#"
+                         class="btn btn-danger btn-sm">Hapus</a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
               </table>
+
             </div>
           </div>
         </div>
