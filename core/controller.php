@@ -1,4 +1,3 @@
-
 <?php
 class Controller
 {
@@ -15,46 +14,31 @@ class Controller
                 if (!empty($data)) {
                     extract($data);
                 }
-
-                require __DIR__ . '/../view/' . $viewName . '.php';
+                
+                $file = __DIR__ . '/../view/' . $viewName . '.php';
+                if(!file_exists($file)){
+                    die("FILE VIEW TIDAK DITEMUKAN: " . $file . " <br> Cek lagi nama file di folder view/v_master/");
+                }
+                require $file;
             }
 
             public function model($modelName)
             {
                 require_once __DIR__ . '/../model/' . $modelName . '.php';
-
                 $modelName = basename($modelName);
-
                 return new $modelName();
             }
 
-            public function post($key = null)
-            {
-                if ($key === null) {
-                    return $_POST;
-                }
-
-                return $_POST[$key] ?? null;
-            }
-
-            public function get($key = null)
-            {
-                if ($key === null) {
-                    return $_GET;
-                }
-
-                return $_GET[$key] ?? null;
-            }
+            public function post($key = null) { return $key === null ? $_POST : ($_POST[$key] ?? null); }
+            public function get($key = null) { return $key === null ? $_GET : ($_GET[$key] ?? null); }
         };
     }
 
-    // TAMBAHAN: agar $this->view() bisa digunakan
     public function view($viewName, $data = [])
     {
         $this->load->view($viewName, $data);
     }
 
-    // TAMBAHAN: agar $this->model() bisa digunakan
     public function model($modelName)
     {
         return $this->load->model($modelName);
